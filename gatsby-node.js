@@ -1,8 +1,21 @@
+const { createFilePath } = require(`gatsby-source-filesystem`)
 const each = require('lodash/each')
 const Promise = require('bluebird')
 const path = require('path')
 const PostTemplate = path.resolve('./src/templates/index.js')
 //const { createFilePath } = require(`gatsby-source-filesystem`)
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `PilonProduct`) {
+    console.log(node.name.trim())
+    createNodeField({
+      node,
+      name: `slug`,
+      value: `products/${node.name.trim()}`,
+    })
+  }
+}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions

@@ -16,6 +16,7 @@ exports.sourceNodes = (
     const nodeContent = JSON.stringify(product)
 
     const nodeData = Object.assign({}, product, {
+      name: product.name,
       id: nodeId,
       parent: null,
       children: [],
@@ -45,7 +46,6 @@ exports.sourceNodes = (
           products.forEach(product => {
             const nodeData = processProduct(product)
             createNode(nodeData)
-            console.log(nodeData)
           })
         })
     })
