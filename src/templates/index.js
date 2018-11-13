@@ -5,7 +5,6 @@ import React from 'react'
 import Post from 'templates/Post'
 import Meta from 'components/Meta'
 import Layout from 'components/Layout'
-import Page from 'templates/Page'
 
 const Template = ({ data, location }) => (
   <div>

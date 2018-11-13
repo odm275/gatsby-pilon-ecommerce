@@ -22,58 +22,38 @@ exports.onCreateNode = ({ node, actions }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-
   return new Promise((resolve, reject) => {
+    const productPageTemplate = path.resolve(`./src/templates/product-page.js`)
     resolve(
-      graphql(
-        `
-          {
-            allFile(filter: { extension: { regex: "/md|js/" } }, limit: 1000) {
-              edges {
-                node {
-                  id
-                  name: sourceInstanceName
-                  path: absolutePath
-                  remark: childMarkdownRemark {
-                    id
-                    frontmatter {
-                      layout
-                      path
-                    }
-                  }
+      graphql(`
+        {
+          allPilonProduct {
+            edges {
+              node {
+                fields {
+                  slug
                 }
               }
             }
           }
-        `
-      ).then(({ errors, data }) => {
-        if (errors) {
-          console.log(errors)
-          reject(errors)
         }
-
-        // Create blog posts & pages.
-        const items = data.allFile.edges
-        const posts = items.filter(({ node }) => /posts/.test(node.name))
-        each(posts, ({ node }) => {
-          if (!node.remark) return
-          const { path } = node.remark.frontmatter
+      `).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+        result.data.allPilonProduct.edges.forEach(({ node }) => {
           createPage({
-            path,
-            component: PostTemplate,
+            path: node.fields.slug,
+            component: productPageTemplate,
+            context: {
+              // Data passed to context is available
+              // in page queries as GraphQL variables.
+              slug: node.fields.slug,
+            },
           })
         })
-
-        const pages = items.filter(({ node }) => /page/.test(node.name))
-        each(pages, ({ node }) => {
-          if (!node.remark) return
-          const { name } = path.parse(node.path)
-          const PageTemplate = path.resolve(node.path)
-          createPage({
-            path: name,
-            component: PageTemplate,
-          })
-        })
+        resolve()
       })
     )
   })
