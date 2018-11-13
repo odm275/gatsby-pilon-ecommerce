@@ -8,11 +8,14 @@ const PostTemplate = path.resolve('./src/templates/index.js')
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `PilonProduct`) {
-    console.log(node.name.trim())
+    const routeFragment = node.name
+      .toLowerCase()
+      .split(' ')
+      .join('-')
     createNodeField({
       node,
       name: `slug`,
-      value: `products/${node.name.trim()}`,
+      value: `products/${routeFragment}`,
     })
   }
 }
