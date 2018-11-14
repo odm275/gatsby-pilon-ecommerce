@@ -1,13 +1,12 @@
 import { graphql } from 'gatsby'
+import get from 'lodash/get'
 import React from 'react'
 import Layout from 'components/Layout'
 import Product from './Product'
 const Template = ({ data, location }) => {
-  console.log('data')
-  console.log(data)
   return (
     <Layout location={location}>
-      <h1>lol</h1>
+      <Product data={get(data, 'pilonProduct')} />
     </Layout>
   )
 }

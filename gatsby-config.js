@@ -3,12 +3,12 @@ const { createHttpLink } = require(`apollo-link-http`)
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatstrap',
-    description: 'Gatsby starter for bootstrap a blog',
+    title: 'Store',
+    description: 'Gatsby project featuring pilon and hasura',
     siteUrl: 'https://gatstrap.netlify.com',
-    author: 'jaxx2104',
+    author: 'odm275',
     twitter: 'jaxx2104',
-    adsense: '',
+    adsense: 'discord @pwii#5075',
   },
   pathPrefix: '/',
   plugins: [
