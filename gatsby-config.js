@@ -7,11 +7,12 @@ module.exports = {
     description: 'Gatsby project featuring pilon and hasura',
     siteUrl: 'https://gatstrap.netlify.com',
     author: 'odm275',
-    twitter: 'jaxx2104',
+    twitter: 'lol', //remove this later, otherwise it crashes
     adsense: 'discord @pwii#5075',
   },
   pathPrefix: '/',
   plugins: [
+    `gatsby-plugin-stripe-checkout`,
     {
       resolve: `gatsby-source-pilon`,
     },
@@ -116,4 +117,7 @@ module.exports = {
     'gatsby-plugin-twitter',
     'gatsby-transformer-sharp',
   ],
+  mapping: {
+    'PilonProduct.edges.node.skuID': `hasura.products.SKU`,
+  },
 }

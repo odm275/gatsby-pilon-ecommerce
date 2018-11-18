@@ -3,6 +3,7 @@ import get from 'lodash/get'
 import React from 'react'
 import map from 'lodash/map'
 import Img from 'gatsby-image'
+import Checkout from '../../components/checkout'
 import './style.scss'
 
 const Product = ({ data }) => {
@@ -27,6 +28,7 @@ const Product = ({ data }) => {
               <div>$4.99</div>
               <span className="badge badge-secondary">{sku}</span>
               <input type="number" />
+              <Checkout />
             </div>
           </div>
           <div className="content">
