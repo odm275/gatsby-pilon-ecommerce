@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "author": "Futoshi Iwashita <jaxx2104@gmail.com>",
   "dependencies": {
+    "axios": "^0.18.0",
     "gatsby": "2.0.45",
     "gatsby-image": "2.0.20",
     "gatsby-link": "2.0.6",
@@ -30,7 +31,11 @@
     "gatsby-source-filesystem": "2.0.8",
     "gatsby-source-graphql": "^2.0.6",
     "gatsby-transformer-remark": "2.1.12",
-    "gatsby-transformer-sharp": "2.1.8"
+    "gatsby-transformer-sharp": "2.1.8",
+    "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
+    "redux-devtools": "^3.4.2",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.8",

@@ -1,5 +1,5 @@
-const fetch = require(`node-fetch`)
-const { createHttpLink } = require(`apollo-link-http`)
+const fetch = require('node-fetch')
+const { createHttpLink } = require('apollo-link-http')
 
 module.exports = {
   siteMetadata: {
