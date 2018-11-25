@@ -6,6 +6,7 @@ Gatsby Ecommerce ecommerce project featuring Pilon and Hashura. (Under Construct
 
 - Gatsby 2.0
 - Pilon
+- Stripe (AWS)
 - Hashura
 - Bootstrap 4
 - Redux
