@@ -14,8 +14,8 @@ const loadDevTools = () =>
 const store = createStore(
   rootReducer,
   compose(
-    loadDevTools(),
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
+    loadDevTools()
   )
 )
 export default () => store

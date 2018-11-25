@@ -23,13 +23,24 @@ class Navi extends React.Component {
               </li>
               <li
                 className={
-                  location.pathname === '/profile/'
+                  location.pathname === '/register/'
                     ? 'nav-item active'
                     : 'nav-item'
                 }
               >
-                <Link to="/profile/" className="nav-link">
-                  Profile
+                <Link to="/register/" className="nav-link">
+                  Register
+                </Link>
+              </li>
+              <li
+                className={
+                  location.pathname === '/login/'
+                    ? 'nav-item active'
+                    : 'nav-item'
+                }
+              >
+                <Link to="/login/" className="nav-link">
+                  Log In
                 </Link>
               </li>
             </ul>

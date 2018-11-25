@@ -26,14 +26,14 @@ class SignUpForm extends Component {
   }
   render() {
     return (
-      <form>
+      <form style={{ padding: 50 }}>
         <div className="form-group">
           <label for="firstName">First Name</label>
           <input
             onChange={this.onChange('firstName')}
             type="text"
             className="form-control"
-            placeholder="Oscar"
+            placeholder="Ex: Oscar"
           />
         </div>
         <div className="form-group">
@@ -43,7 +43,7 @@ class SignUpForm extends Component {
             type="text"
             className="form-control"
             id="inputAddress2"
-            placeholder="Mejia"
+            placeholder="Ex: Mejia"
           />
         </div>
         <div className="form-group">

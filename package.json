@@ -2,7 +2,7 @@
   "name": "gatsby-starter-bootstrap",
   "description": "Simple starter for Gatsby",
   "version": "2.0.0",
-  "author": "Futoshi Iwashita <jaxx2104@gmail.com>",
+  "author": "Oscar Mejia <pomejia@gmail.com>",
   "dependencies": {
     "axios": "^0.18.0",
     "gatsby": "2.0.45",

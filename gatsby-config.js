@@ -7,7 +7,7 @@ module.exports = {
     description: 'Gatsby project featuring pilon and hasura',
     siteUrl: 'https://gatstrap.netlify.com',
     author: 'odm275',
-    twitter: 'lol', //remove this later, otherwise it crashes
+    twitter: 'N/A', //remove this later, otherwise it crashes
     adsense: 'discord @pwii#5075',
   },
   pathPrefix: '/',

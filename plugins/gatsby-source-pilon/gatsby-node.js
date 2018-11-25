@@ -23,26 +23,27 @@ exports.sourceNodes = (
       internal: {
         type: `PilonProduct`,
         content: nodeContent,
-        contentDigest: createContentDigest(product),
-      },
+        contentDigest: createContentDigest(product)
+      }
     })
     return nodeData
   }
   return config.pilonApi
     .post('/token', {
       token_scope: 'public',
-      environment_id: config.environmentId,
+      environment_id: config.environmentId
     })
     .then(resToken => {
       config.pilonApi
         .get('/products', {
           headers: {
             Authorization: `Bearer ${resToken.data.token}`,
-            Accept: 'application/json',
-          },
+            Accept: 'application/json'
+          }
         })
         .then(resProducts => {
           const products = resProducts.data
+          console.log(products)
           products.forEach(product => {
             const nodeData = processProduct(product)
             createNode(nodeData)
