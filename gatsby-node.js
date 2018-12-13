@@ -3,6 +3,7 @@ const path = require('path')
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `PilonProduct`) {
+    console.log('PilonProduct')
     const routeFragment = node.name
       .toLowerCase()
       .split(' ')
@@ -10,7 +11,7 @@ exports.onCreateNode = ({ node, actions }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: `products/${routeFragment}`,
+      value: `products/${routeFragment}`
     })
   }
 }
@@ -18,10 +19,10 @@ exports.onCreateNode = ({ node, actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return new Promise((resolve, reject) => {
-    const productPageTemplate = path.resolve(`./src/templates/product-page.js`)
+    const productPageTemplate = path.resolve(`src/templates/product-page.js`)
     resolve(
       graphql(`
-        {
+        query {
           allPilonProduct {
             edges {
               node {
@@ -34,6 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `).then(result => {
         if (result.errors) {
+          console.log('Got an Error')
           console.log(result.errors)
           reject(result.errors)
         }
@@ -44,11 +46,11 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               // Data passed to context is available
               // in page queries as GraphQL variables.
-              slug: node.fields.slug,
-            },
+              slug: node.fields.slug
+            }
           })
         })
-        resolve()
+        return
       })
     )
   })
@@ -60,8 +62,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       alias: {
         components: path.resolve(__dirname, 'src/components'),
         templates: path.resolve(__dirname, 'src/templates'),
-        scss: path.resolve(__dirname, 'src/scss'),
-      },
-    },
+        scss: path.resolve(__dirname, 'src/scss')
+      }
+    }
   })
 }

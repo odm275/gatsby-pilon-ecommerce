@@ -18,8 +18,8 @@ export const query = graphql`
       name
       sku
       id
-      short_desc
-      long_desc
+      shortDesc
+      longDesc
     }
   }
 `

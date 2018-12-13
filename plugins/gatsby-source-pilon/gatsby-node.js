@@ -1,6 +1,6 @@
 const config = require('./config')
 
-exports.sourceNodes = (
+exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
   configOptions
 ) => {
@@ -28,26 +28,48 @@ exports.sourceNodes = (
     })
     return nodeData
   }
-  return config.pilonApi
-    .post('/token', {
-      token_scope: 'public',
-      environment_id: config.environmentId
-    })
-    .then(resToken => {
-      config.pilonApi
-        .get('/products', {
-          headers: {
-            Authorization: `Bearer ${resToken.data.token}`,
-            Accept: 'application/json'
-          }
-        })
-        .then(resProducts => {
-          const products = resProducts.data
-          console.log(products)
-          products.forEach(product => {
-            const nodeData = processProduct(product)
-            createNode(nodeData)
-          })
-        })
-    })
+
+  const authToken = await config.pilonApi.post('/token', {
+    token_scope: 'public',
+    environment_id: config.environmentId
+  })
+
+  const products = await config.pilonApi.get('/products', {
+    headers: {
+      Authorization: `Bearer ${authToken.data.token}`,
+      Accept: 'application/json'
+    }
+  })
+  products.data.forEach(product => {
+    const nodeData = processProduct(product)
+    createNode(nodeData)
+  })
+
+  return
+
+  // return config.pilonApi
+  //   .post('/token', {
+  //     token_scope: 'public',
+  //     environment_id: config.environmentId
+  //   })
+  //   .then(resToken => {
+  //     config.pilonApi
+  //       .get('/products', {
+  //         headers: {
+  //           Authorization: `Bearer ${resToken.data.token}`,
+  //           Accept: 'application/json'
+  //         }
+  //       })
+  //       .then(resProducts => {
+  //         const products = resProducts.data
+  //         console.log('sourcing')
+  //         console.log(products)
+  //         products.forEach(product => {
+  //           const nodeData = processProduct(product)
+  //           createNode(nodeData)
+  //         })
+  //         console.log('return')
+  //         return
+  //       })
+  //   })
 }

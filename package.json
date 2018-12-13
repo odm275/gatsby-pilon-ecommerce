@@ -29,7 +29,7 @@
     "gatsby-remark-responsive-iframe": "2.0.6",
     "gatsby-remark-smartypants": "2.0.6",
     "gatsby-source-filesystem": "2.0.8",
-    "gatsby-source-graphql": "^2.0.6",
+    "gatsby-source-graphql": "^2.0.7",
     "gatsby-transformer-remark": "2.1.12",
     "gatsby-transformer-sharp": "2.1.8",
     "react-redux": "^5.1.1",

@@ -55,8 +55,8 @@ export const register = customerData => dispatch => {
           '/customers',
           {
             environment: `/v1/environments/${config.environmentId}`,
-            first_name: customerData.firstName,
-            last_name: customerData.lastName,
+            firstName: customerData.firstName,
+            lastName: customerData.lastName,
             email: customerData.email,
             password: customerData.password
           },
@@ -67,6 +67,7 @@ export const register = customerData => dispatch => {
           }
         )
         .then(() => {
+          console.log('login')
           dispatch(
             login({
               email: customerData.email,
@@ -79,6 +80,7 @@ export const register = customerData => dispatch => {
 }
 
 export const login = authData => dispatch => {
+  console.log(authData)
   config.pilonApi
     .post('/token', {
       token_scope: 'customer',

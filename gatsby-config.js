@@ -1,48 +1,31 @@
-const fetch = require('node-fetch')
-const { createHttpLink } = require('apollo-link-http')
-
 module.exports = {
   siteMetadata: {
     title: 'Store',
-    description: 'Gatsby project featuring pilon and hasura',
+    description: 'Gatsby project featuring pilon',
     siteUrl: 'https://gatstrap.netlify.com',
     author: 'odm275',
     twitter: 'N/A', //remove this later, otherwise it crashes
-    adsense: 'discord @pwii#5075',
+    adsense: 'discord @pwii#5075'
   },
   pathPrefix: '/',
   plugins: [
-    `gatsby-plugin-stripe-checkout`,
     {
-      resolve: `gatsby-source-pilon`,
+      resolve: 'gatsby-source-pilon'
     },
+    `gatsby-plugin-stripe-checkout`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/posts/`,
-        name: 'posts',
-      },
-    },
-    {
-      resolve: 'gatsby-source-graphql',
-      options: {
-        typeName: 'HASURA',
-        fieldName: 'hasura',
-        createLink: () =>
-          createHttpLink({
-            uri: `${process.env.HASURA_GRAPHQL_URL}`,
-            headers: {},
-            fetch,
-          }),
-        refetchInterval: 10, // Refresh every 60 seconds for new data
-      },
+        name: 'posts'
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/images/`,
-        name: 'images',
-      },
+        name: 'images'
+      }
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -53,20 +36,20 @@ module.exports = {
             options: {
               maxWidth: 750,
               linkImagesToOriginal: false,
-              wrapperStyle: 'margin-bottom: 1.0725rem;',
-            },
+              wrapperStyle: 'margin-bottom: 1.0725rem;'
+            }
           },
           {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
-              wrapperStyle: 'margin-bottom: 1.0725rem',
-            },
+              wrapperStyle: 'margin-bottom: 1.0725rem'
+            }
           },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-        ],
-      },
+          'gatsby-remark-smartypants'
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -83,29 +66,29 @@ module.exports = {
           {
             src: '/img/android-chrome-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: '/img/android-chrome-512x512.png',
             sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
+            type: 'image/png'
+          }
+        ]
+      }
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: '',
-      },
+        trackingId: ''
+      }
     },
     {
       resolve: 'gatsby-plugin-netlify',
       options: {
         mergeSecurityHeaders: true,
         mergeLinkHeaders: true,
-        mergeCachingHeaders: true,
-      },
+        mergeCachingHeaders: true
+      }
     },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-offline',
@@ -115,9 +98,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-twitter',
-    'gatsby-transformer-sharp',
-  ],
-  mapping: {
-    'PilonProduct.edges.node.skuID': `hasura.products.SKU`,
-  },
+    'gatsby-transformer-sharp'
+  ]
 }
